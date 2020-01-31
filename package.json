@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "popup": "parcel popup/popup.html",
-    "copy_manifest": "cp -f ./manifest.json dist",
-    "build": "rm -rf dist/ && parcel build popup/popup.html && npm run copy_manifest"
+    "copy_files": "cp -f ./background.js ./manifest.json dist",
+    "build": "rm -rf dist/ && parcel build popup/popup.html && npm run copy_files"
   },
   "author": "",
   "license": "ISC",
