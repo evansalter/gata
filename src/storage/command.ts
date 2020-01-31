@@ -27,4 +27,12 @@ export class Command {
             [this.name]: this
         }, console.log);
     }
+
+    public static list(): Promise<Command[]> {
+        return new Promise<Command[]>((resolve, reject) => {
+            chrome.storage.sync.get(results => {
+                resolve(Object.entries(results).map((v: [string, Command]) => v[1]))
+            })
+        });
+    }
 }
