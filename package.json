@@ -1,0 +1,23 @@
+{
+  "name": "quickjump",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "popup": "parcel popup/popup.html",
+    "copy_manifest": "cp -f ./manifest.json dist",
+    "build": "rm -rf dist/ && parcel build popup/popup.html && npm run copy_manifest"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "vue": "^2.6.11",
+    "vue-hot-reload-api": "^2.3.4"
+  },
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^3.1.1",
+    "parcel-bundler": "^1.12.4",
+    "typescript": "^3.7.5",
+    "vue-template-compiler": "^2.6.11"
+  }
+}
