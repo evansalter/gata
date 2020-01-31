@@ -11,7 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@mdi/font": "^4.8.95",
     "bulma": "^0.8.0",
+    "ionicons": "^4.6.3",
     "vue": "^2.6.11",
     "vue-hot-reload-api": "^2.3.4"
   },
