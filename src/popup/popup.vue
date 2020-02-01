@@ -1,54 +1,66 @@
 <template>
     <div class="main">
         <h1 class="title">QuickJump</h1>
-        <div class="accordion" v-for="c in commands" :key="c.name">
-            <div class="summary" @click="toggleExpansion(c.name)">
-                <span class="name">{{ c.name }}</span>
-                <span class="icon is-medium" :class="{ rotated: !!expanded[c.name] }">
+        <div class="accordion" v-for="c in commands" :key="c.id">
+            <div class="summary" @click="toggleExpansion(c.id)">
+                <span v-if="c.name" class="name">{{ c.name }}</span>
+                <span v-else class="unnamed">Untitled</span>
+                <span class="icon is-medium" :class="{ rotated: isExpanded(c.id) }">
                     <i class="arrow-icon ion-md-arrow-dropright"></i>
                 </span>
             </div>
-            <div class="details" :class="{ 'expanded': !!expanded[c.name] }">
+            <div class="details" :class="{ 'expanded': isExpanded(c.id) }">
                 <CommandComponent :command="c"></CommandComponent>
             </div>
+        </div>
+        <div>
+            <button class="button is-primary new-button" @click="addNewCommand()">+ Add New</button>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { Component, Vue } from 'vue-property-decorator';
 import CommandComponent from '../command.vue';
 import { Command } from '../storage/command';
 
-export default Vue.extend({
-    data() {
-        return {
-            commands: [],
-            expanded: {},
-        }
-    },
-    mounted() {
-        console.log(`mounted`);
-        this.loadCommands();
-    },
-    methods: {
-        loadCommands() {
-            Command.list().then(c => {
-                console.log(`got commands ${JSON.stringify(c)}`);
-                this.commands = c;
-            })
-        },
-        toggleExpansion(name: string) {
-            if (this.expanded[name] === undefined) {
-                Vue.set(this.expanded, name, false);
-            }
-            this.expanded[name] = !this.expanded[name];
-        }
-    },
+@Component({
     components: {
         CommandComponent,
     }
 })
+export default class Popup extends Vue{
+    commands: Command[] = [];
+    expanded: {[id: string]: boolean} = {};
+
+    mounted() {
+        this.loadCommands();
+    }
+
+    loadCommands() {
+        Command.list().then(c => {
+            console.log(`got commands ${JSON.stringify(c)}`);
+            this.commands = c;
+        })
+    }
+
+    toggleExpansion(id: string) {
+        if (this.expanded[id] === undefined) {
+            Vue.set(this.expanded, id, false);
+        }
+        this.expanded[id] = !this.expanded[id];
+    }
+
+    isExpanded(id: string) {
+        return !!this.expanded[id];
+    }
+
+    addNewCommand() {
+        const c = new Command();
+        this.commands.push(c);
+        this.toggleExpansion(c.id);
+    }
+}
 </script>
 
 <style lang="scss">
@@ -74,6 +86,11 @@ export default Vue.extend({
         .name {
             font-size: 15px;
         }
+
+        .unnamed {
+            color: gray;
+            font-style: italic;
+        }
     }
 
     .details {
@@ -94,5 +111,9 @@ export default Vue.extend({
 
 .rotated {
     transform: rotate(90deg);
+}
+
+.new-button {
+    width: 100%;
 }
 </style>
