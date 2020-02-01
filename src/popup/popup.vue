@@ -39,7 +39,6 @@ export default class Popup extends Vue{
 
     loadCommands() {
         Command.list().then(c => {
-            console.log(`got commands ${JSON.stringify(c)}`);
             this.commands = c;
         })
     }
