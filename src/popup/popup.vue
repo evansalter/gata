@@ -10,7 +10,7 @@
                 </span>
             </div>
             <div class="details" :class="{ 'expanded': isExpanded(c.id) }">
-                <CommandComponent :command="c"></CommandComponent>
+                <CommandComponent @reload="loadCommands()" :command="c"></CommandComponent>
             </div>
         </div>
         <div>

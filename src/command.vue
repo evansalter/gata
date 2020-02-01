@@ -58,6 +58,7 @@ export default class CommandComponent extends Vue{
 
     del(): void {
         this.command.delete();
+        this.$emit('reload');
     }
 };
 </script>
