@@ -57,6 +57,10 @@ export class Command {
         }, console.log);
     }
 
+    public delete(): void {
+        chrome.storage.sync.remove(this.id, console.log);
+    }
+
     public static list(): Promise<Command[]> {
         return new Promise<Command[]>((resolve, reject) => {
             chrome.storage.sync.get(results => {

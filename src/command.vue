@@ -25,8 +25,13 @@
             {{ errorMessage }}
         </div>
 
-        <div>
+        <div class="buttons">
             <button class="button is-success save-button" @click="save()">Save</button>
+            <button class="button is-danger delete-button" @click="del()">
+                <span class="icon is-medium">
+                    <i class="ion-md-trash"></i>
+                </span>
+            </button>
         </div>
     </div>
 </template>
@@ -50,11 +55,23 @@ export default class CommandComponent extends Vue{
             this.errorMessage = e;
         }
     }
+
+    del(): void {
+        this.command.delete();
+    }
 };
 </script>
 
 <style lang="scss">
-.save-button {
-    width: 100%;
+.buttons {
+    display: flex;
+
+    .save-button {
+        flex-grow: 1;
+    }
+
+    .delete-button {
+        width: 40px;
+    }
 }
 </style>
