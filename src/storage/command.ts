@@ -7,6 +7,22 @@ export enum FieldType {
 export class Field {
     name: string;
     type: FieldType;
+
+    public static fromObject(obj: Object) {
+        const f = new Field();
+        for (let key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                f[key] = obj[key]
+            }
+        }
+        return f;
+    }
+
+    public validate() {
+        if (!this.name) {
+            throw new Error('Field name is required');
+        }
+    }
 }
 
 export class Command {
@@ -38,6 +54,7 @@ export class Command {
                 c[key] = obj[key]
             }
         }
+        c.fields.forEach((f, idx) => c.fields[idx] = Field.fromObject(f));
         return c;
     }
 
@@ -47,6 +64,9 @@ export class Command {
         }
         if (!this.id) {
             throw new Error('Internal Error: ID is required');
+        }
+        for (let field of this.fields) {
+            field.validate();
         }
     }
 

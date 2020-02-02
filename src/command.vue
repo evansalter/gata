@@ -21,6 +21,10 @@
             </div>
         </div>
 
+        <div class="field" v-for="(field, idx) in fields" :key="idx">
+            <CommandFieldComponent :field="field" :field-num="idx + 1"></CommandFieldComponent>
+        </div>
+
         <div v-if="errorMessage" class="notification is-danger">
             {{ errorMessage }}
         </div>
@@ -38,9 +42,14 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { Command } from './storage/command';
+import { Command, Field } from './storage/command';
+import CommandFieldComponent from './command-field.vue';
 
-@Component
+@Component({
+    components: {
+        CommandFieldComponent,
+    }
+})
 export default class CommandComponent extends Vue{
     @Prop()
     private command: Command;
@@ -50,6 +59,7 @@ export default class CommandComponent extends Vue{
     save(): void {
         this.errorMessage = null;
         try {
+            this.command.fields = this.command.fields.slice(null, this.numPlaceholders())
             this.command.save()
         } catch(e) {
             this.errorMessage = e;
@@ -59,6 +69,21 @@ export default class CommandComponent extends Vue{
     del(): void {
         this.command.delete();
         this.$emit('reload');
+    }
+
+    get fields(): Field[] {
+        if (!this.command.fields) {
+            this.command.fields = [];
+        }
+        while (this.command.fields.length < this.numPlaceholders()) {
+            this.command.fields.push(new Field());
+        }
+        return this.command.fields.slice(0, this.numPlaceholders());
+    }
+
+    numPlaceholders(): number {
+        const m = this.command.url.match(/%s/g) || [];
+        return m.length;
     }
 };
 </script>
