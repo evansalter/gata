@@ -1,6 +1,14 @@
 <template>
     <div class="main">
-        <h1 class="title">QuickJump</h1>
+        <div class="header">
+            <h1 class="title">QuickJump</h1>
+            <button class="button" @click="toggleEditing()">
+                <span class="icon is-medium">
+                    <i v-if="!isEditing" class="ion-md-create"></i>
+                    <i v-if="isEditing" class="ion-md-close"></i>
+                </span>
+            </button>
+        </div>
         <div class="accordion" v-for="c in commands" :key="c.id">
             <div class="summary" @click="toggleExpansion(c.id)">
                 <span v-if="c.name" class="name">{{ c.name }}</span>
@@ -32,6 +40,7 @@ import { Command } from '../storage/command';
 export default class Popup extends Vue{
     commands: Command[] = [];
     expanded: {[id: string]: boolean} = {};
+    isEditing: boolean = false;
 
     mounted() {
         this.loadCommands();
@@ -58,6 +67,10 @@ export default class Popup extends Vue{
         const c = new Command();
         this.commands.push(c);
         this.toggleExpansion(c.id);
+    }
+
+    toggleEditing() {
+        this.isEditing = !this.isEditing;
     }
 }
 </script>
@@ -114,5 +127,10 @@ export default class Popup extends Vue{
 
 .new-button {
     width: 100%;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
 }
 </style>
