@@ -33,7 +33,7 @@
             <button class="button is-success save-button" @click="save()">Save</button>
             <button class="button is-danger delete-button" @click="del()">
                 <span class="icon is-medium">
-                    <i class="ion-md-trash"></i>
+                    <i class="mdi mdi-delete"></i>
                 </span>
             </button>
         </div>

@@ -4,8 +4,8 @@
             <h1 class="title">QuickJump</h1>
             <button class="button" @click="toggleEditing()">
                 <span class="icon is-medium">
-                    <i v-if="!isEditing" class="ion-md-create"></i>
-                    <i v-if="isEditing" class="ion-md-close"></i>
+                    <i v-if="!isEditing" class="mdi mdi-pencil"></i>
+                    <i v-if="isEditing" class="mdi mdi-close"></i>
                 </span>
             </button>
         </div>
@@ -14,7 +14,7 @@
                 <span v-if="c.name" class="name">{{ c.name }}</span>
                 <span v-else class="unnamed">Untitled</span>
                 <span class="icon is-medium" :class="{ rotated: isExpanded(c.id) }">
-                    <i class="arrow-icon ion-md-arrow-dropright"></i>
+                    <i class="arrow-icon mdi mdi-chevron-right"></i>
                 </span>
             </div>
             <div class="details" :class="{ 'expanded': isExpanded(c.id) }">
