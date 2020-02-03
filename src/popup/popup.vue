@@ -12,7 +12,7 @@
         <div class="search">
             <div class="field">
                 <div class="control has-icons-left">
-                    <input v-focus v-model="searchTerm" class="input" type="text" placeholder="Search..." v-on:keyup.enter="searchEnter"/>
+                    <input v-focus v-model="searchTerm" class="input" type="text" placeholder="Search..." v-on:keyup.enter="searchEnter" v-on:keydown.tab="searchTab"/>
                     <span class="icon is-small is-left">
                         <i class="mdi mdi-magnify"></i>
                     </span>
@@ -83,6 +83,10 @@ export default class Popup extends Vue{
     }
 
     searchEnter(): void {
+        this.searchTab();
+    }
+
+    searchTab(): void {
         const c = this.filteredCommands[0];
         this.setExpanded(c.id, true);
     }
