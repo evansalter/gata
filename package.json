@@ -13,6 +13,7 @@
   "dependencies": {
     "@mdi/font": "^4.8.95",
     "bulma": "^0.8.0",
+    "fuse.js": "^3.4.6",
     "moment": "^2.24.0",
     "sprintf-js": "^1.1.2",
     "vue": "^2.6.11",

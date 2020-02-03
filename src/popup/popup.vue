@@ -9,7 +9,17 @@
                 </span>
             </button>
         </div>
-        <div class="accordion" v-for="c in commands" :key="c.id">
+        <div class="search">
+            <div class="field">
+                <div class="control has-icons-left">
+                    <input v-model="searchTerm" class="input" type="text" placeholder="Search..." v-on:keyup.enter="searchEnter" :disabled="filteredCommands.length < 1" autofocus/>
+                    <span class="icon is-small is-left">
+                        <i class="mdi mdi-magnify"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="accordion" v-for="c in filteredCommands" :key="c.id">
             <div class="summary" @click="toggleExpansion(c.id)">
                 <span v-if="c.name" class="name">{{ c.name }}</span>
                 <span v-else class="unnamed">Untitled</span>
@@ -31,6 +41,16 @@
 import { Component, Vue } from 'vue-property-decorator';
 import CommandComponent from '../command.vue';
 import { Command } from '../storage/command';
+import Fuse from 'fuse.js';
+
+const fuseOpts: Fuse.FuseOptions<Command> = {
+    keys: [
+        { name: 'title', weight: 0.7 },
+        { name: 'description', weight: 0.3 },
+    ],
+    shouldSort: true,
+    // id: 'id',
+};
 
 @Component({
     components: {
@@ -41,6 +61,7 @@ export default class Popup extends Vue{
     commands: Command[] = [];
     expanded: {[id: string]: boolean} = {};
     isEditing: boolean = false;
+    searchTerm: string = '';
 
     mounted() {
         this.loadCommands();
@@ -52,11 +73,27 @@ export default class Popup extends Vue{
         })
     }
 
-    toggleExpansion(id: string) {
-        if (this.expanded[id] === undefined) {
-            Vue.set(this.expanded, id, false);
+    get filteredCommands(): Command[] {
+        if (!this.searchTerm) {
+            return this.commands;
         }
-        this.expanded[id] = !this.expanded[id];
+
+        const fuse = new Fuse(this.commands, fuseOpts);
+        const results = fuse.search(this.searchTerm); // as string[];
+        return results as Command[];
+    }
+
+    searchEnter(): void {
+        const c = this.filteredCommands[0];
+        this.setExpanded(c.id, true);
+    }
+
+    toggleExpansion(id: string) {
+        this.setExpanded(id, !this.expanded[id]);
+    }
+
+    private setExpanded(id: string, expanded: boolean): void {
+        Vue.set(this.expanded, id, expanded);
     }
 
     isExpanded(id: string) {
@@ -83,6 +120,10 @@ export default class Popup extends Vue{
     width: 300px;
     height: 500px;
     margin: 15px;
+}
+
+.search {
+    margin-bottom: 10px;
 }
 
 .accordion {
