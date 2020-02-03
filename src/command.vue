@@ -41,7 +41,7 @@
         </div>
         <div v-else>
             <div class="description">{{ command.description }}</div>
-            <form @submit="go">
+            <form @submit.prevent="go()">
                 <div class="field" v-for="(field, idx) in fields" :key="idx">
                     <label class="label">{{ field.name }}</label>
                     <div class="control">
@@ -60,7 +60,6 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { Command, Field } from './storage/command';
 import CommandFieldComponent from './command-field.vue';
-import { vsprintf } from 'sprintf-js';
 
 @Component({
     components: {
@@ -123,8 +122,11 @@ export default class CommandComponent extends Vue{
     }
 
     go(): void {
-        const url = vsprintf(this.command.url, this.values);
-        window.open(url);
+        let u = this.command.url;
+        for (let val of this.values) {
+            u = u.replace('%s', val);
+        }
+        window.open(u);
     }
 };
 </script>
