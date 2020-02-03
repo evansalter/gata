@@ -18,7 +18,7 @@
                 </span>
             </div>
             <div class="details" :class="{ 'expanded': isExpanded(c.id) }">
-                <CommandComponent @reload="loadCommands()" :command="c"></CommandComponent>
+                <CommandComponent @reload="loadCommands()" :command="c" :is-editing="isEditing"></CommandComponent>
             </div>
         </div>
         <div>
@@ -67,6 +67,7 @@ export default class Popup extends Vue{
         const c = new Command();
         this.commands.push(c);
         this.toggleExpansion(c.id);
+        this.isEditing = true;
     }
 
     toggleEditing() {
