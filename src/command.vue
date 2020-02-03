@@ -41,15 +41,17 @@
         </div>
         <div v-else>
             <div class="description">{{ command.description }}</div>
-            <div class="field" v-for="(field, idx) in fields" :key="idx">
-                <label class="label">{{ field.name }}</label>
-                <div class="control">
-                    <input v-model="values[idx]" class="input" type="text" placeholder="URL" required/>
+            <form @submit="go">
+                <div class="field" v-for="(field, idx) in fields" :key="idx">
+                    <label class="label">{{ field.name }}</label>
+                    <div class="control">
+                        <input v-model="values[idx]" class="input" type="text" placeholder="URL" required/>
+                    </div>
                 </div>
-            </div>
-            <div class="buttons">
-                <button class="button is-success main-button" @click="go()" :disabled="!areFieldsValid()">Go</button>
-            </div>
+                <div class="buttons">
+                    <button type="submit" class="button is-success main-button" :disabled="!areFieldsValid()">Go</button>
+                </div>
+            </form>
         </div>
     </div>
 </template>
