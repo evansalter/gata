@@ -12,7 +12,7 @@
         <div class="search">
             <div class="field">
                 <div class="control has-icons-left">
-                    <input v-model="searchTerm" class="input" type="text" placeholder="Search..." v-on:keyup.enter="searchEnter" :disabled="filteredCommands.length < 1" autofocus/>
+                    <input v-focus v-model="searchTerm" class="input" type="text" placeholder="Search..." v-on:keyup.enter="searchEnter"/>
                     <span class="icon is-small is-left">
                         <i class="mdi mdi-magnify"></i>
                     </span>
