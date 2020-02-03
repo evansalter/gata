@@ -49,7 +49,6 @@ const fuseOpts: Fuse.FuseOptions<Command> = {
         { name: 'description', weight: 0.3 },
     ],
     shouldSort: true,
-    // id: 'id',
 };
 
 @Component({

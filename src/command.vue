@@ -58,7 +58,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { Command, Field } from './storage/command';
 import CommandFieldComponent from './command-field.vue';
-import { sprintf } from 'sprintf-js';
+import { vsprintf } from 'sprintf-js';
 
 @Component({
     components: {
@@ -121,7 +121,7 @@ export default class CommandComponent extends Vue{
     }
 
     go(): void {
-        const url = sprintf(this.command.url, this.values);
+        const url = vsprintf(this.command.url, this.values);
         window.open(url);
     }
 };
