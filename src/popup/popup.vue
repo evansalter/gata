@@ -121,7 +121,7 @@ export default class Popup extends Vue{
 
 .main {
     width: 300px;
-    height: 500px;
+    height: 100%;
     margin: 15px;
 }
 
