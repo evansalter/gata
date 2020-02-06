@@ -34,6 +34,14 @@
         <div>
             <button class="button is-primary new-button" @click="addNewCommand()">+ Add New</button>
         </div>
+        <div class="my-footer">
+            <span>
+                Made with <icon class="icon is-small"><i class="mdi mdi-coffee"/></icon> by <a @click="goToURL('https://evansalter.com')">Evan Salter</a>
+            </span>
+            <a class="github-icon" @click="goToURL('https://github.com/evansalter/quickjump')">
+                <icon class="icon is-small"><i class="mdi mdi-github-circle"/></icon>
+            </a>
+        </div>
     </div>
 </template>
 
@@ -113,6 +121,10 @@ export default class Popup extends Vue{
     toggleEditing() {
         this.isEditing = !this.isEditing;
     }
+
+    goToURL(url: string): void {
+        window.open(url);
+    }
 }
 </script>
 
@@ -177,5 +189,19 @@ export default class Popup extends Vue{
 .header {
     display: flex;
     justify-content: space-between;
+}
+
+.my-footer {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+
+    .github-icon {
+        color: inherit;
+
+        &:hover {
+            color: black;
+        }
+    }
 }
 </style>
