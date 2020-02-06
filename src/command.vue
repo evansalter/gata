@@ -120,16 +120,6 @@ export default class CommandComponent extends Vue{
         return this.command.fields.slice(0, this.numPlaceholders());
     }
 
-    // getDropdownFields(field: Field, idx: number): DropdownValue[] {
-    //     field.dropdownValues.forEach(dv => {
-    //         if (dv.isDefault) {
-    //             this.values[idx] = dv.value;
-    //         }
-    //     })
-
-    //     return field.dropdownValues;
-    // }
-
     numPlaceholders(): number {
         if (!this.command.url) {
             return 0;
