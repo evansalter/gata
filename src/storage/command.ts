@@ -2,11 +2,25 @@ import moment from 'moment';
 
 export enum FieldType {
     String = 0,
+    Dropdown = 1,
+}
+
+export class DropdownValue {
+    value: string;
+    isDefault: boolean;
+
+    constructor(); 
+    constructor(value: string); 
+    constructor(value?: string) {
+        this.value = value;
+        this.isDefault = false;
+    }
 }
 
 export class Field {
     name: string;
     type: FieldType;
+    dropdownValues?: DropdownValue[];
 
     public static fromObject(obj: Object) {
         const f = new Field();
@@ -15,6 +29,7 @@ export class Field {
                 f[key] = obj[key]
             }
         }
+        f.type = f.type || FieldType.String;
         return f;
     }
 
