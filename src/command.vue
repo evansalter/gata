@@ -45,7 +45,14 @@
                 <div class="field" v-for="(field, idx) in fields" :key="idx">
                     <label class="label">{{ field.name }}</label>
                     <div class="control">
-                        <input v-model="values[idx]" class="input" type="text" placeholder="URL" required/>
+                        <input v-if="field.type === fieldTypes.String" v-model="values[idx]" class="input" type="text" placeholder="Value" required/>
+                        <div v-if="field.type === fieldTypes.Dropdown" class="select">
+                            <select v-model="values[idx]" class="select" required>
+                                <option v-for="option of field.dropdownValues" :key="option.value">
+                                    {{ option.value }}
+                                </option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div class="buttons">
@@ -58,7 +65,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { Command, Field } from './storage/command';
+import { Command, DropdownValue, Field, FieldType } from './storage/command';
 import CommandFieldComponent from './command-field.vue';
 
 @Component({
@@ -73,8 +80,20 @@ export default class CommandComponent extends Vue{
     @Prop()
     private isEditing: boolean;
 
+    fieldTypes = FieldType;
     errorMessage: string = '';
     values: string[] = [];
+
+    mounted(): void {
+        this.command.fields.forEach((field: Field, idx: number) => {
+            if (field.type === FieldType.Dropdown) {
+                const def = field.dropdownValues.find(dv => dv.isDefault);
+                if (def) {
+                    Vue.set(this.values, idx, def.value);
+                }
+            }
+        });
+    }
 
     save(): void {
         this.errorMessage = null;
@@ -100,6 +119,16 @@ export default class CommandComponent extends Vue{
         }
         return this.command.fields.slice(0, this.numPlaceholders());
     }
+
+    // getDropdownFields(field: Field, idx: number): DropdownValue[] {
+    //     field.dropdownValues.forEach(dv => {
+    //         if (dv.isDefault) {
+    //             this.values[idx] = dv.value;
+    //         }
+    //     })
+
+    //     return field.dropdownValues;
+    // }
 
     numPlaceholders(): number {
         if (!this.command.url) {
@@ -147,5 +176,9 @@ export default class CommandComponent extends Vue{
 .description {
     font-size: 13px;
     color: gray;
+}
+
+.select {
+    width: 100%;
 }
 </style>
