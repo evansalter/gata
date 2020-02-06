@@ -1,7 +1,6 @@
 {
     "name": "QuickJump",
     "version": "0.0.1",
-    "default_locale": "en",
     "description": "Bookmarks made better",
     "manifest_version": 2,
     "browser_action": {
