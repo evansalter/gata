@@ -1,11 +1,9 @@
 {
     "name": "QuickJump",
     "version": "0.0.1",
-    "description": "",
+    "default_locale": "en",
+    "description": "Bookmarks made better",
     "manifest_version": 2,
-    "background": {
-        "scripts": ["background.js"]
-    },
     "browser_action": {
         "default_popup": "popup.html"
     },

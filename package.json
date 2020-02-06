@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "popup": "parcel popup/popup.html",
-    "copy_files": "cp -f src/background.js src/manifest.json dist",
+    "copy_files": "cp -f src/manifest.json dist",
     "build": "rm -rf dist/ && parcel build src/popup/popup.html && npm run copy_files"
   },
   "author": "",
