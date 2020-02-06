@@ -36,6 +36,13 @@
                         </icon>
                     </button>
                 </p>
+                <p class="control" v-if="dropdownValues.length > 1">
+                    <button class="button is-danger is-outlined" @click="removeDropdownValue(idx)">
+                        <icon class="icon is-small">
+                            <i class="mdi mdi-delete"/>
+                        </icon>
+                    </button>
+                </p>
             </div>
         </div>
     </div>
@@ -66,6 +73,10 @@ export default class CommandFieldComponent extends Vue {
 
     addDropdownValue(): void {
         this.field.dropdownValues.push(new DropdownValue());
+    }
+
+    removeDropdownValue(idx: number): void {
+        this.field.dropdownValues.splice(idx, 1);
     }
 
     get dropdownValues(): DropdownValue[] {
