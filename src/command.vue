@@ -74,7 +74,7 @@ import CommandFieldComponent from './command-field.vue';
         CommandFieldComponent,
     }
 })
-export default class CommandComponent extends Vue{
+export default class CommandComponent extends Vue {
     @Prop()
     private command: Command;
 

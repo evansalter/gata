@@ -2,45 +2,66 @@
     <div class="main">
         <div class="header">
             <h1 class="title popup-title">gata</h1>
-            <button class="button" @click="toggleEditing()">
-                <span class="icon is-medium">
-                    <i v-if="!isEditing" class="mdi mdi-pencil"></i>
-                    <i v-if="isEditing" class="mdi mdi-close"></i>
-                </span>
-            </button>
-        </div>
-        <div class="search">
-            <div class="field">
-                <div class="control has-icons-left">
-                    <input v-focus v-model="searchTerm" class="input" type="text" placeholder="Search..." v-on:keyup.enter="searchEnter" v-on:keydown.tab="searchTab"/>
-                    <span class="icon is-small is-left">
-                        <i class="mdi mdi-magnify"></i>
+            <div>
+                <button class="button" v-if="!showHelp" @click="showHelp = true">
+                    <span class="icon is-medium">
+                        <i class="mdi mdi-help-circle-outline"></i>
                     </span>
+                </button>
+                <button class="button" v-if="!showHelp && !isEditing" @click="toggleEditing()">
+                    <span class="icon is-medium">
+                        <i class="mdi mdi-pencil"></i>
+                    </span>
+                </button>
+                <button class="button" v-if="showHelp" @click="showHelp = false">
+                    <span class="icon is-medium">
+                        <i class="mdi mdi-close"></i>
+                    </span>
+                </button>
+                <button class="button" v-else-if="isEditing" @click="toggleEditing()">
+                    <span class="icon is-medium">
+                        <i class="mdi mdi-close"></i>
+                    </span>
+                </button>
+            </div>
+        </div>
+        <div v-if="showHelp">
+            <HelpComponent></HelpComponent>
+        </div>
+        <div v-else>
+            <div class="search">
+                <div class="field">
+                    <div class="control has-icons-left">
+                        <input v-focus v-model="searchTerm" class="input" type="text" placeholder="Search..." v-on:keyup.enter="searchEnter" v-on:keydown.tab="searchTab"/>
+                        <span class="icon is-small is-left">
+                            <i class="mdi mdi-magnify"></i>
+                        </span>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="accordion" v-for="c in filteredCommands" :key="c.id">
-            <div class="summary" @click="toggleExpansion(c.id)">
-                <span v-if="c.name" class="name">{{ c.name }}</span>
-                <span v-else class="unnamed">Untitled</span>
-                <span class="icon is-medium" :class="{ rotated: isExpanded(c.id) }">
-                    <i class="arrow-icon mdi mdi-chevron-right"></i>
+            <div class="accordion" v-for="c in filteredCommands" :key="c.id">
+                <div class="summary" @click="toggleExpansion(c.id)">
+                    <span v-if="c.name" class="name">{{ c.name }}</span>
+                    <span v-else class="unnamed">Untitled</span>
+                    <span class="icon is-medium" :class="{ rotated: isExpanded(c.id) }">
+                        <i class="arrow-icon mdi mdi-chevron-right"></i>
+                    </span>
+                </div>
+                <div class="details" :class="{ 'expanded': isExpanded(c.id) }">
+                    <CommandComponent @reload="loadCommands()" :command="c" :is-editing="isEditing"></CommandComponent>
+                </div>
+            </div>
+            <div>
+                <button class="button is-primary new-button" @click="addNewCommand()">+ Add New</button>
+            </div>
+            <div class="my-footer">
+                <span>
+                    Made with <icon class="icon is-small"><i class="mdi mdi-coffee"/></icon> by <a @click="goToURL('https://evansalter.com')">Evan Salter</a>
                 </span>
+                <a class="github-icon" @click="goToURL('https://github.com/evansalter/gata')">
+                    <icon class="icon is-small"><i class="mdi mdi-github-circle"/></icon>
+                </a>
             </div>
-            <div class="details" :class="{ 'expanded': isExpanded(c.id) }">
-                <CommandComponent @reload="loadCommands()" :command="c" :is-editing="isEditing"></CommandComponent>
-            </div>
-        </div>
-        <div>
-            <button class="button is-primary new-button" @click="addNewCommand()">+ Add New</button>
-        </div>
-        <div class="my-footer">
-            <span>
-                Made with <icon class="icon is-small"><i class="mdi mdi-coffee"/></icon> by <a @click="goToURL('https://evansalter.com')">Evan Salter</a>
-            </span>
-            <a class="github-icon" @click="goToURL('https://github.com/evansalter/gata')">
-                <icon class="icon is-small"><i class="mdi mdi-github-circle"/></icon>
-            </a>
         </div>
     </div>
 </template>
@@ -48,6 +69,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import CommandComponent from '../command.vue';
+import HelpComponent from '../help.vue';
 import { Command } from '../storage/command';
 import Fuse from 'fuse.js';
 
@@ -62,6 +84,7 @@ const fuseOpts: Fuse.FuseOptions<Command> = {
 @Component({
     components: {
         CommandComponent,
+        HelpComponent,
     }
 })
 export default class Popup extends Vue{
@@ -69,6 +92,7 @@ export default class Popup extends Vue{
     expanded: {[id: string]: boolean} = {};
     isEditing: boolean = false;
     searchTerm: string = '';
+    showHelp: boolean = false;
 
     mounted() {
         this.loadCommands();
@@ -129,14 +153,7 @@ export default class Popup extends Vue{
 </script>
 
 <style lang="scss">
-/**
-    Override Bulma theme colors
-*/
-$background: #F9DEC9;
-$primary: #1F646D;
-$success: #06D6A0;
-$danger: #ED6A5A;
-
+@import '../theme';
 @import '~bulma/bulma';
 
 /**
