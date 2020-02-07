@@ -20,6 +20,7 @@
                 <div class="control">
                     <input v-model="command.url" class="input" type="text" placeholder="URL" required/>
                 </div>
+                <p class="help">The URL to navigate to, with %s in place of the query parameters</p>
             </div>
 
             <div class="field" v-for="(field, idx) in fields" :key="idx">
