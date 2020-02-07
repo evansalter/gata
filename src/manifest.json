@@ -1,8 +1,12 @@
 {
-    "name": "QuickJump",
-    "version": "0.0.2",
+    "name": "gata",
+    "version": "0.0.3",
     "description": "Bookmarks made better",
     "manifest_version": 2,
+    "icons": {
+        "128": "graphics_Large Icon.png",
+        "48": "graphics_Medium Icon.png"
+    },
     "browser_action": {
         "default_popup": "popup.html"
     },

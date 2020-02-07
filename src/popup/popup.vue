@@ -1,7 +1,7 @@
 <template>
     <div class="main">
         <div class="header">
-            <h1 class="title">QuickJump</h1>
+            <h1 class="title popup-title">gata</h1>
             <button class="button" @click="toggleEditing()">
                 <span class="icon is-medium">
                     <i v-if="!isEditing" class="mdi mdi-pencil"></i>
@@ -129,7 +129,31 @@ export default class Popup extends Vue{
 </script>
 
 <style lang="scss">
+/**
+    Override Bulma theme colors
+*/
+$background: #F9DEC9;
+$primary: #1F646D;
+$success: #06D6A0;
+$danger: #ED6A5A;
+
 @import '~bulma/bulma';
+
+/**
+    Import fonts
+*/
+@font-face {
+    font-family: Comfortaa;
+    src: url(../fonts/Comfortaa-Regular.ttf) format('truetype');
+}
+
+/**
+    Styles
+*/
+.popup-title {
+    font-family: Comfortaa;
+    color: $primary;
+}
 
 .main {
     width: 300px;
