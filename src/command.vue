@@ -45,7 +45,7 @@
                 <div class="field" v-for="(field, idx) in fields" :key="idx">
                     <label class="label">{{ field.name }}</label>
                     <div class="control">
-                        <input v-if="field.type === fieldTypes.String" v-model="values[idx]" class="input" type="text" placeholder="Value" required/>
+                        <input v-if="field.type === fieldTypes.String" v-model="values[idx]" class="input" type="text" placeholder="Value" :name="buildInputName(command, field)" required/>
                         <div v-if="field.type === fieldTypes.Dropdown" class="select">
                             <select v-model="values[idx]" class="select" required>
                                 <option v-for="option of field.dropdownValues" :key="option.value">
@@ -146,6 +146,10 @@ export default class CommandComponent extends Vue{
             u = u.replace('%s', val);
         }
         window.open(u);
+    }
+
+    buildInputName(command: Command, field: Field): string {
+        return `${command.id}:${field.name}`;
     }
 };
 </script>
