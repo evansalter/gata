@@ -38,7 +38,7 @@
             <span>
                 Made with <icon class="icon is-small"><i class="mdi mdi-coffee"/></icon> by <a @click="goToURL('https://evansalter.com')">Evan Salter</a>
             </span>
-            <a class="github-icon" @click="goToURL('https://github.com/evansalter/quickjump')">
+            <a class="github-icon" @click="goToURL('https://github.com/evansalter/gata')">
                 <icon class="icon is-small"><i class="mdi mdi-github-circle"/></icon>
             </a>
         </div>
