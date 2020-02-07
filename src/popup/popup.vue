@@ -26,7 +26,7 @@
             </div>
         </div>
         <div v-if="showHelp">
-            <HelpComponent></HelpComponent>
+            <HelpComponent :onboarding="needsOnboarding"></HelpComponent>
         </div>
         <div v-else>
             <div class="search">
@@ -92,6 +92,7 @@ export default class Popup extends Vue{
     expanded: {[id: string]: boolean} = {};
     isEditing: boolean = false;
     searchTerm: string = '';
+    needsOnboarding: boolean = false;
     showHelp: boolean = false;
 
     mounted() {
@@ -101,6 +102,11 @@ export default class Popup extends Vue{
     loadCommands() {
         Command.list().then(c => {
             this.commands = c;
+
+            if (!this.commands || this.commands.length === 0) {
+                this.needsOnboarding = true;
+                this.showHelp = true;
+            }
         })
     }
 

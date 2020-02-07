@@ -2,13 +2,15 @@
    <div class="help-main content">
         <p class="title popup-title is-4">Welcome to gata!</p>
 
-        <p>
-            You're seeing this message because you are either a new user or you have not yet created any shortcuts.
-        </p>
+        <template v-if="onboarding">
+            <p>
+                You're seeing this message because you are either a new user or you have not yet created any shortcuts.
+            </p>
 
-        <p>
-            This guide will walk you through the setup and usage of <span class="logo">gata</span>.
-        </p>
+            <p>
+                This guide will walk you through the setup and usage of <span class="logo">gata</span>.
+            </p>
+        </template>
 
         <p class="title popup-title is-5">
             What is gata?
@@ -106,7 +108,6 @@
             If you encounter an issue with <span class="logo">gata</span> you can open an issue on <a @click="goToURL('https://github.com/evansalter/gata')">Github</a>
             or email us at <a @click="goToURL('mailto:gata@evansalter.com')">gata@evansalter.com</a>
         </p>
-
    </div> 
 </template>
 
@@ -117,6 +118,9 @@ import CommandFieldComponent from './command-field.vue';
 
 @Component
 export default class HelpComponent extends Vue {
+    @Prop()
+    onboarding: boolean;
+
     goToURL(url: string) {
         window.open(url);
     }
