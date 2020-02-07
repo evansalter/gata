@@ -81,7 +81,7 @@ export default class CommandFieldComponent extends Vue {
 
     get dropdownValues(): DropdownValue[] {
         if (!this.field.dropdownValues) {
-            this.field.dropdownValues = [new DropdownValue()];
+            Vue.set(this.field, 'dropdownValues', [new DropdownValue());
         }
         return this.field.dropdownValues;
     }
