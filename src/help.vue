@@ -33,7 +33,7 @@
 
         <p>
             Moving around <span class="logo">gata</span> is easy! To get to the main menu, click the <icon class="icon is-small"><i class="mdi mdi-close"></i></icon>
-            at the top of this page. To get back to this help screen, click the <icon class="icon is-small"><i class="mdi mdi-help-circle-outline"></i></icon>
+            at the top of this page. To get back to this help screen, click <icon class="icon is-small"><i class="mdi mdi-help-circle-outline"></i></icon>
         </p>
 
         <p>
