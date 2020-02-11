@@ -20,7 +20,7 @@ gata is a dynamic shortcut manager. Dynamic shortcuts different from regular boo
 
 ![](design/screenshot%202.png)
 
-## Contriubting
+## Contributing
 
 The following information is provided in order to contribute to this project:
 
@@ -41,3 +41,11 @@ Chrome will install the extension. After you make changes, run `npm run build` a
 ### PRs
 
 After you have made your change, push your branch to your forked copy and make a pull request into this repo. Make sure to reference any issues you closing with your change. I will be sure to review your change and and it integrated.
+
+## Technologies
+
+gata is built with:
+
+- [Vue.js](https://addons.cdn.mozilla.net/static/img/addons-buttons/AMO-button_1.png)
+- [Bulma](https://bulma.io/)
+- [Parcel](https://parceljs.org/)
