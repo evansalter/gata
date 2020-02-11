@@ -31,6 +31,10 @@
                 {{ errorMessage }}
             </div>
 
+            <div v-if="successMessage" class="notification is-success">
+                {{ successMessage }}
+            </div>
+
             <div class="buttons">
                 <button class="button is-success main-button" @click="save()">Save</button>
                 <button class="button is-danger delete-button" @click="del()">
@@ -83,6 +87,7 @@ export default class CommandComponent extends Vue {
 
     fieldTypes = FieldType;
     errorMessage: string = '';
+    successMessage: string = '';
     values: string[] = [];
 
     mounted(): void {
@@ -101,6 +106,8 @@ export default class CommandComponent extends Vue {
         try {
             this.command.fields = this.command.fields.slice(null, this.numPlaceholders())
             this.command.save()
+            this.successMessage = 'Saved!';
+            setTimeout(() => this.successMessage = '', 5000);
         } catch(e) {
             this.errorMessage = e;
         }
