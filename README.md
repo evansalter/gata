@@ -9,10 +9,10 @@
   </a>
   
   <!-- Firefox extension badge -->
-  <a href="TODO">
+  <!-- <a href="TODO">
     <img src="https://addons.cdn.mozilla.net/static/img/addons-buttons/AMO-button_1.png"/>
   </a>
-</p>
+</p> -->
 
 ---
 
