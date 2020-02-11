@@ -29,6 +29,7 @@
             <HelpComponent :onboarding="needsOnboarding"></HelpComponent>
         </div>
         <div v-else>
+            <h4 class="title popup-title is-4">My Shortcuts</h4>
             <div class="search">
                 <div class="field">
                     <div class="control has-icons-left">

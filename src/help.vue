@@ -18,13 +18,13 @@
 
         <p>
             <span class="logo">gata</span> saves time by allowing you to define and use dynamic shortcuts. Rather than links 
-            to a specific URL, dynamic shortcuts allow you to define variables in your URL.
+            to a specific URL, dynamic shortcuts allow you to define variables in your URL to be filled in later.
         </p>
 
         <p>
             For example, suppose we want a shortcut to go to a Twitter profile. Twitter profiles live at the URL https://twitter.com/<username>.
-            To make this dynamic, we'll tell <span class="logo">gata</span> that everything after the slash should be filled in later.
-            So, the URL for the shortcut will be https://twitter.com/%s, where "%s" signifies a placeholder.
+            To make this into a dynamic shortcut, we'll tell <span class="logo">gata</span> that everything after the slash should be filled in later.
+            So, the URL for the shortcut will be https://twitter.com/%s, where "%s" signifies the variable.
         </p>
 
         <p class="title popup-title is-5">
@@ -49,8 +49,8 @@
 
             <ol>
                 <li>Click "Add New +"</li>
-                <li>Give your component a title and description</li>
-                <li>Define your URL as described above. Again, this will be https://twitter.com/%s, where %s is the placeholder</li>
+                <li>Give your shortcut a title and description</li>
+                <li>Define your URL as described above. Again, this will be https://twitter.com/%s, where %s is the variable</li>
                 <li>Set your paramter type to "text" by choosing the <icon class="icon is-small"><i class="mdi mdi-format-color-text"></i></icon> button</li>
                 <li>Give the parameter a name. In this case, it should be "Username"</li>
                 <li>Hit save</li>
@@ -58,7 +58,7 @@
         </p>
 
         <p>
-            You also have the option to create dropdown parameters, instead of free-form text. To do this, click the <icon class="icon is-small"><i class="mdi mdi-menu-open"></i></icon>.
+            You also have the option to create dropdown variables instead of free-form text. To do this, click the <icon class="icon is-small"><i class="mdi mdi-menu-open"></i></icon>.
             From there, you can fill out the first possible value, add more with <icon class="icon is-small"><i class="mdi mdi-plus"></i></icon>, and delete options with 
             <icon class="icon is-small"><i class="mdi mdi-delete"></i></icon>.
         </p>
@@ -84,7 +84,7 @@
         <p>
             The point of <span class="logo">gata</span> is to browse faster, so lets learn how to navigate <span class="logo">gata</span> with the keyboard!
             We have already learned that the shortcut to open <span class="logo">gata</span> is <kbd>Ctrl+.</kbd> or <kbd>Command+.</kbd>.
-            However, you can also use commands without taking your hands off the keyboard:
+            However, you can also access shortcuts without taking your hands off the keyboard:
 
             <ol>
                 <li>Open <span class="logo">gata</span> with the shortcut <kbd>Ctrl+.</kbd> or <kbd>Command+.</kbd></li>
