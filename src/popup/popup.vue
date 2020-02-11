@@ -75,7 +75,7 @@ import Fuse from 'fuse.js';
 
 const fuseOpts: Fuse.FuseOptions<Command> = {
     keys: [
-        { name: 'title', weight: 0.7 },
+        { name: 'name', weight: 0.7 },
         { name: 'description', weight: 0.3 },
     ],
     shouldSort: true,
