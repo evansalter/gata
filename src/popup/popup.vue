@@ -39,17 +39,24 @@
                     </div>
                 </div>
             </div>
-            <div class="accordion" v-for="c in filteredCommands" :key="c.id">
-                <div class="summary" @click="toggleExpansion(c.id)">
-                    <span v-if="c.name" class="name">{{ c.name }}</span>
-                    <span v-else class="unnamed">Untitled</span>
-                    <span class="icon is-medium" :class="{ rotated: isExpanded(c.id) }">
-                        <i class="arrow-icon mdi mdi-chevron-right"></i>
-                    </span>
+            <div v-if="filteredCommands.length">
+                <div class="accordion" v-for="c in filteredCommands" :key="c.id">
+                    <div class="summary" @click="toggleExpansion(c.id)">
+                        <span v-if="c.name" class="name">{{ c.name }}</span>
+                        <span v-else class="unnamed">Untitled</span>
+                        <span class="icon is-medium" :class="{ rotated: isExpanded(c.id) }">
+                            <i class="arrow-icon mdi mdi-chevron-right"></i>
+                        </span>
+                    </div>
+                    <div class="details" :class="{ 'expanded': isExpanded(c.id) }">
+                        <CommandComponent @reload="loadCommands()" :command="c" :is-editing="isEditing"></CommandComponent>
+                    </div>
                 </div>
-                <div class="details" :class="{ 'expanded': isExpanded(c.id) }">
-                    <CommandComponent @reload="loadCommands()" :command="c" :is-editing="isEditing"></CommandComponent>
-                </div>
+            </div>
+            <div v-else class="content">
+                Looks like you haven't created any shortcuts yet! Add one below, or click
+                <icon class="icon is-small"><i class="mdi mdi-help-circle-outline"></i></icon>
+                if you need help.
             </div>
             <div>
                 <button class="button is-primary new-button" @click="addNewCommand()">+ Add New</button>
@@ -112,7 +119,7 @@ export default class Popup extends Vue{
 
     get filteredCommands(): Command[] {
         if (!this.searchTerm) {
-            return this.commands;
+            return this.commands || [];
         }
 
         const fuse = new Fuse(this.commands, fuseOpts);
