@@ -6,7 +6,8 @@
   "scripts": {
     "popup": "parcel popup/popup.html",
     "copy_files": "cp -f src/manifest.json design/*Icon.png dist",
-    "build": "rm -rf dist/ && parcel build ./src/popup/popup.html && npm run copy_files"
+    "build": "rm -rf dist/ && parcel build ./src/popup/popup.html && npm run copy_files",
+    "zip_sources": "tar cf source_code.zip README.md package.json package-lock.json src design"
   },
   "author": "",
   "license": "ISC",
