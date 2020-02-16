@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="design/graphics_Marquee Promo Tile.png"/>
+  <img src="design/graphics/graphics_Marquee Promo Tile.png"/>
 </p>
 
 <p align="center">
@@ -40,7 +40,9 @@ When you go to use this shortcut, gata will prompt you to enter the username you
 
 ## Screenshots
 
-![](design/screenshot%202.png)
+|Viewing your shortcuts|Navigating to a shortcut|Creating a shortcut|
+|---|---|---|
+|![](design/screenshots/base/screenshot%201.png)|![](design/screenshots/base/screenshot%202.png)|![](design/screenshots/base/screenshot%203.png)|
 
 ## Contributing
 
