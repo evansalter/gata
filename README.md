@@ -36,6 +36,11 @@ When you go to use this shortcut, gata will prompt you to enter the username you
 ## Features
 
 - Keyboard navigation - access all your shortcuts without using your mouse
+  - <kbd>Ctrl+.</kbd> (<kbd>⌘+.</kbd> on Mac) to open
+  - Once open, start typing to filter to the shortcut you want
+  - <kbd>Tab</kbd> to expand the first result
+  - Fill out form using keyboard
+  - <kbd>Enter</kbd> to navigate to page
 - Syncing - your shortcuts are synced across Chrome browsers that are signed in with the same account
 
 ## Screenshots
