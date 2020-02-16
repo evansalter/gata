@@ -9,10 +9,10 @@
   </a>
   
   <!-- Firefox extension badge -->
-  <!-- <a href="TODO">
-    <img src="https://addons.cdn.mozilla.net/static/img/addons-buttons/AMO-button_1.png"/>
+  <a href="https://addons.mozilla.org/en-CA/firefox/addon/gata/">
+    <img src="https://addons.cdn.mozilla.net/static/img/addons-buttons/AMO-button_1.png" height="58" />
   </a>
-</p> -->
+</p>
 
 ---
 
