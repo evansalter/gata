@@ -16,7 +16,29 @@
 
 ---
 
-gata is a dynamic shortcut manager. Dynamic shortcuts different from regular bookmarks in that you can define variables in your URL. For example, a shortcut with the URL `https://twitter.com/%s` has one variable (the `%s`) for the username. When accessing this URL, gata will ask you to provide a value for that variable. The UI looks like this:
+gata helps you find the information you need, quicker than ever.
+
+gata allows you to define dynamic shortcuts allowing you to jump to the page you need, when you need it. Just supply gata with a URL, define some variables, and you're done!
+
+Examples include:
+- Going to a Twitter profile
+- Jumping to a specific repository on Github
+- Viewing your favourite Reddit, sorted how you choose
+
+## How does it work?
+
+To create a shortcut to go to a Twitter profile, we'll provide the URL "https://twitter.com/%s"
+
+The "%s" signifies a variable. This is the part that you are going to fill in when you access the shortcut.
+
+When you go to use this shortcut, gata will prompt you to enter the username you want to access and take you there.
+
+## Features
+
+- Keyboard navigation - access all your shortcuts without using your mouse
+- Syncing - your shortcuts are synced across Chrome browsers that are signed in with the same account
+
+## Screenshots
 
 ![](design/screenshot%202.png)
 
