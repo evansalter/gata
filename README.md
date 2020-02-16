@@ -43,6 +43,8 @@ When you go to use this shortcut, gata will prompt you to enter the username you
   - <kbd>Enter</kbd> to navigate to page
 - Syncing - your shortcuts are synced across Chrome browsers that are signed in with the same account
 
+![](design/gifs/demo.gif)
+
 ## Screenshots
 
 |Viewing your shortcuts|Navigating to a shortcut|Creating a shortcut|
