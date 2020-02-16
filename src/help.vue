@@ -68,7 +68,7 @@
         </p>
 
         <p>
-            The first step is to open <span class="logo">gata</span>. To do this, click the <img class="small-icon" src="../design/graphics_Medium Icon.png"/> to the right of your address bar.
+            The first step is to open <span class="logo">gata</span>. To do this, click the <img class="small-icon" src="../design/graphics/graphics_Medium Icon.png"/> to the right of your address bar.
             Alternatively, you can use the keyboard shortcut <kbd>Ctrl+.</kbd> (<kbd>Command+.</kbd> on Mac).
         </p>
 

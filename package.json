@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "popup": "parcel popup/popup.html",
-    "copy_files": "cp -f src/manifest.json design/*Icon.png dist",
+    "copy_files": "cp -f src/manifest.json design/graphics/*Icon.png dist",
     "build": "rm -rf dist/ && parcel build ./src/popup/popup.html && npm run copy_files",
     "zip_sources": "tar cf source_code.zip README.md package.json package-lock.json src design"
   },
