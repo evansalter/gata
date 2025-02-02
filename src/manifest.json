@@ -1,6 +1,6 @@
 {
     "name": "gata",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "Bookmarks made better",
     "manifest_version": 3,
     "icons": {
@@ -24,7 +24,7 @@
     "browser_specific_settings": {
         "gecko": {
             "id": "gata@evansalter.com",
-            "strict_min_version": "57.0"
+            "strict_min_version": "58.0"
         }
     }
 }
