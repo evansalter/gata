@@ -2,19 +2,19 @@
     "name": "gata",
     "version": "1.0.0",
     "description": "Bookmarks made better",
-    "manifest_version": 2,
+    "manifest_version": 3,
     "icons": {
         "128": "graphics_Large Icon.png",
         "48": "graphics_Medium Icon.png"
     },
-    "browser_action": {
+    "action": {
         "default_popup": "popup.html"
     },
     "permissions": [
         "storage"
     ],
     "commands": {
-        "_execute_browser_action": {
+        "_execute_action": {
             "suggested_key": {
                 "default": "Ctrl+Period"
             },
