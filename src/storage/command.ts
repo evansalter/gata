@@ -89,16 +89,16 @@ export class Command {
         this.validate()
         chrome.storage.sync.set({
             [this.id]: this
-        }, console.log);
+        }).then(console.log);
     }
 
     public delete(): void {
-        chrome.storage.sync.remove(this.id, console.log);
+        chrome.storage.sync.remove(this.id).then(console.log);
     }
 
     public static list(): Promise<Command[]> {
         return new Promise<Command[]>((resolve, reject) => {
-            chrome.storage.sync.get(results => {
+            chrome.storage.sync.get().then(results => {
                 resolve(Object.entries(results).map((v: [string, Command]) => Command.fromObject(v[1])))
             })
         });
